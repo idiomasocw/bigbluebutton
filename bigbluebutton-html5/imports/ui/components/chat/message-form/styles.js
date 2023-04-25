@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 
 const Input = styled(TextareaAutosize)`
   flex: 1;
-  background: #fff;
+  background:#fff;
   background-clip: padding-box;
   margin: 0;
   color: ${colorText};
