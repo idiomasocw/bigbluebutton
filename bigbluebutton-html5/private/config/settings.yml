@@ -264,7 +264,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://live.onecultureworld.com/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -627,7 +627,7 @@ public:
     # Number of reconnection attempts of the signaling websocket, before
     # showing to the user there's an audio error.
     audioReconnectionAttempts: 3
-    sipjsHackViaWs: false
+    sipjsHackViaWs: true
     # sipjsAllowMdns: whether mDNS candidates should be allowed in local SDPs.
     # Default is false since FreeSWITCH doesn't resolve mDNS by default.
     sipjsAllowMdns: false
