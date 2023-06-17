@@ -8,6 +8,7 @@ import { check } from 'meteor/check';
 import Logger from './logger';
 import Redis from './redis';
 
+import startDisplayExternalUrl from '/imports/api/display-external-url/server/methods/startDisplayExternalUrl.js';
 import setMinBrowserVersions from './minBrowserVersion';
 import { PrometheusAgent, METRIC_NAMES } from './prom-metrics/index.js'
 
@@ -176,6 +177,11 @@ Meteor.startup(() => {
       const methodName = method.includes('stream-cursor') ? 'stream-cursor' : method;
       PrometheusAgent.increment(METRIC_NAMES.METEOR_METHODS, { methodName });
     }
+  });
+
+  // Register your new Meteor method here:
+  Meteor.methods({
+    'displayExternalUrl.start': startDisplayExternalUrl,
   });
 
   Logger.warn(`SERVER STARTED.

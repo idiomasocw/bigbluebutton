@@ -48,6 +48,7 @@ class IntlStartup extends Component {
 
   componentDidMount() {
     const { locale, overrideLocaleFromPassedParameter } = this.props;
+    console.log("Locale used:", overrideLocaleFromPassedParameter || locale);  // Add this line
     this.fetchLocalizedMessages(overrideLocaleFromPassedParameter || locale, true);
   }
 
@@ -64,6 +65,7 @@ class IntlStartup extends Component {
   }
 
   fetchLocalizedMessages(locale, init = false) {
+    console.log(`Fetching translations for: ${locale}`);
     const url = `./locale?locale=${locale}&init=${init}`;
     const localesPath = 'locales';
 
@@ -126,6 +128,7 @@ class IntlStartup extends Component {
           Promise.all([fetchFallbackMessages, fetchRegionMessages, fetchSpecificMessages])
             .then((values) => {
               let mergedMessages = Object.assign({}, values[0]);
+              console.log("Merged messages:", mergedMessages);
 
               if (!values[1] && !values[2]) {
                 normalizedLocale = DEFAULT_LANGUAGE;

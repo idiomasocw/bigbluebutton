@@ -13,7 +13,7 @@ import { colorPrimary } from '/imports/ui/stylesheets/styled-components/palette'
 import { PANELS, ACTIONS, LAYOUT_TYPE } from '../../layout/enums';
 import { isPresentationEnabled } from '/imports/ui/services/features';
 import {isLayoutsEnabled} from '/imports/ui/services/features';
-import DisplayExternalURLModalContainer from '/imports/ui/components/display-external-url/modal/container';
+import ExternalURLModal from '/ui/components/display-external-url/modal/component';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -99,8 +99,8 @@ const intlMessages = defineMessages({
     description: 'Label for layouts selection button',
   },
   displayUrlLabel: {
-    id: 'Display-external-url',
-    description: 'Label for the "Display external URL" action',
+    id: 'app.actionsBar.actionsDropdown.displayUrlLabel',
+    description: 'Display external URL button',
   },
 });
 
@@ -161,6 +161,11 @@ class ActionsDropdown extends PureComponent {
     } = intl;
 
     const actions = [];
+// new message for the button label
+const displayURLLabel = {
+  id: 'app.actionsBar.actionsDropdown.displayURLLabel',
+  description: 'Display external URL button',
+};
 
     if (amIPresenter && isPresentationEnabled()) {
       actions.push({
@@ -248,10 +253,10 @@ class ActionsDropdown extends PureComponent {
     if (amIPresenter) {
       actions.push({
         icon: "send", // choose an appropriate icon
-       label: intl.formatMessage(intlMessages.displayUrlLabel),
+        label: formatMessage(intlMessages.displayUrl),
         key: "display-url",
-        onClick: () => mountModal(<DisplayExternalURLModalContainer />),
-	dataTest: 'displayExternalURL',
+        onClick: () => mountModal(<DisplayExternalUrlModal />);
+        dataTest: "displayExternalURL",
       });
     }
     
